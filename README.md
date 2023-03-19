@@ -1,2 +1,2 @@
 # Generative Diffusion
-Code for Various Generative Diffusion Experiments
+Experiments for generative diffusion. Based largely on [this paper](https://arxiv.org/abs/2011.13456)
