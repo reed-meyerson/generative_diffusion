@@ -22,6 +22,7 @@ def two_moons_sampler(batch_size: int) -> torch.Tensor:
     output[bottom_mask] += offset
     return output
 
+
 def spiral_sampler(batch_size: int, num_wraps: int = 3) -> torch.Tensor:
     """
     Note: this samples from a spiral uniformly by angle, NOT by length
