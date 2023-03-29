@@ -1,33 +1,43 @@
 import torch
 from matplotlib import pyplot as plt
+from torch.utils.data import DataLoader
 
-import distributions
+from distributions import CircleSampler, SpiralSampler, TwoMoonsSampler
 
 torch.random.manual_seed(42)
 
 
 def test_circle():
-    x = distributions.circle_sampler(1)
-    assert x.shape == (1, 2)
-
-    x = distributions.circle_sampler(50)
-    assert x.shape == (50, 2)
+    sampler = CircleSampler()
+    x = next(iter(sampler))
+    assert x.shape == torch.Size([2])
     assert x.dtype == torch.float32
+
+    dl = DataLoader(sampler, batch_size=4)
+    batch = next(iter(dl))
+    assert batch.shape == torch.Size([4, 2])
+    assert batch.dtype == torch.float32
 
 
 def test_two_moons():
-    x = distributions.two_moons_sampler(1)
-    assert x.shape == (1, 2)
-
-    x = distributions.two_moons_sampler(50)
-    assert x.shape == (50, 2)
+    sampler = TwoMoonsSampler()
+    x = next(iter(sampler))
+    assert x.shape == torch.Size([2])
     assert x.dtype == torch.float32
+
+    dl = DataLoader(sampler, batch_size=4)
+    batch = next(iter(dl))
+    assert batch.shape == torch.Size([4, 2])
+    assert batch.dtype == torch.float32
 
 
 def test_spiral():
-    x = distributions.spiral_sampler(1)
-    assert x.shape == (1, 2)
-
-    x = distributions.spiral_sampler(50)
-    assert x.shape == (50, 2)
+    sampler = SpiralSampler()
+    x = next(iter(sampler))
+    assert x.shape == torch.Size([2])
     assert x.dtype == torch.float32
+
+    dl = DataLoader(sampler, batch_size=4)
+    batch = next(iter(dl))
+    assert batch.shape == torch.Size([4, 2])
+    assert batch.dtype == torch.float32

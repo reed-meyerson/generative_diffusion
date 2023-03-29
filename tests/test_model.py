@@ -12,6 +12,6 @@ def test_resnet():
     assert y.shape == torch.Size([2])
 
     # test batch input
-    x = torch.rand((5,3))
+    x = torch.rand((5, 3))
     y = m(x)
-    assert y.shape == torch.Size([5,2])
+    assert y.shape == torch.Size([5, 2])
